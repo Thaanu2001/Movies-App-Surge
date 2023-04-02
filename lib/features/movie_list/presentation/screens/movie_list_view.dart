@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../core/model/movie_model.dart';
+import '../../../movie_card/presentation/movie_card.dart';
 import '../../cubit/fetch_movies_cubit.dart';
 
 class MovieListView extends StatefulWidget {
@@ -120,8 +121,9 @@ class _MovieListViewState extends State<MovieListView>
             padding: const EdgeInsets.only(bottom: 10),
             itemBuilder: (context, index) {
               if (index < movies.length) {
-                return Text(
-                  movies[index].title,
+                return MovieCard(
+                  movie: movies[index],
+                  rank: index + 1,
                 );
               } else if (isLastFetch) {
                 return const Text('end');
