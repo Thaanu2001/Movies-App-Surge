@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'core/constants/app_constants.dart';
+import 'core/service_locator/service_locator.dart';
 import 'features/home/presentation/screens/home_page.dart';
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 
