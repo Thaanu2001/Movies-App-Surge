@@ -46,7 +46,8 @@ class _MovieListViewState extends State<MovieListView>
   void setupScrollController(context) {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
+              _scrollController.position.maxScrollExtent &&
+          _scrollController.position.pixels != 0) {
         BlocProvider.of<FetchMoviesCubit>(context).fetchMovies();
       }
     });
@@ -75,9 +76,13 @@ class _MovieListViewState extends State<MovieListView>
       listener: (context, state) {
         if (state is FetchMoviesLoaded) {
           if (state.errorMessage != null) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(state.errorMessage ?? 'Movie fetching failure'),
-            ));
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(state.errorMessage ?? 'Movie fetching failure'),
+                ),
+              );
           }
         }
       },
