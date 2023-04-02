@@ -29,7 +29,7 @@ mixin _$Movie {
   @JsonKey(name: 'overview')
   String get overview => throw _privateConstructorUsedError;
   @JsonKey(name: 'poster_path')
-  String get posterPath => throw _privateConstructorUsedError;
+  String? get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'original_language')
   String get language => throw _privateConstructorUsedError;
   @JsonKey(name: 'release_date')
@@ -54,7 +54,7 @@ abstract class $MovieCopyWith<$Res> {
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'original_title') String originalTitle,
       @JsonKey(name: 'overview') String overview,
-      @JsonKey(name: 'poster_path') String posterPath,
+      @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'original_language') String language,
       @JsonKey(name: 'release_date') String releaseDate,
       @JsonKey(name: 'popularity') double popularity,
@@ -78,7 +78,7 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
     Object? title = null,
     Object? originalTitle = null,
     Object? overview = null,
-    Object? posterPath = null,
+    Object? posterPath = freezed,
     Object? language = null,
     Object? releaseDate = null,
     Object? popularity = null,
@@ -101,10 +101,10 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
-      posterPath: null == posterPath
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -136,7 +136,7 @@ abstract class _$$__MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'original_title') String originalTitle,
       @JsonKey(name: 'overview') String overview,
-      @JsonKey(name: 'poster_path') String posterPath,
+      @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'original_language') String language,
       @JsonKey(name: 'release_date') String releaseDate,
       @JsonKey(name: 'popularity') double popularity,
@@ -156,7 +156,7 @@ class __$$__MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$__Movie>
     Object? title = null,
     Object? originalTitle = null,
     Object? overview = null,
-    Object? posterPath = null,
+    Object? posterPath = freezed,
     Object? language = null,
     Object? releaseDate = null,
     Object? popularity = null,
@@ -179,10 +179,10 @@ class __$$__MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$__Movie>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
-      posterPath: null == posterPath
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -235,7 +235,7 @@ class _$__Movie extends __Movie {
   final String overview;
   @override
   @JsonKey(name: 'poster_path')
-  final String posterPath;
+  final String? posterPath;
   @override
   @JsonKey(name: 'original_language')
   final String language;
@@ -301,7 +301,7 @@ abstract class __Movie extends Movie {
       @JsonKey(name: 'title') required final String title,
       @JsonKey(name: 'original_title') required final String originalTitle,
       @JsonKey(name: 'overview') required final String overview,
-      @JsonKey(name: 'poster_path') required final String posterPath,
+      @JsonKey(name: 'poster_path') required final String? posterPath,
       @JsonKey(name: 'original_language') required final String language,
       @JsonKey(name: 'release_date') required final String releaseDate,
       @JsonKey(name: 'popularity') required final double popularity,
@@ -324,7 +324,7 @@ abstract class __Movie extends Movie {
   String get overview;
   @override
   @JsonKey(name: 'poster_path')
-  String get posterPath;
+  String? get posterPath;
   @override
   @JsonKey(name: 'original_language')
   String get language;
