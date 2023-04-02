@@ -28,6 +28,10 @@ dependencies:
   pull_to_refresh: ^2.0.0
   # This plugin allows Flutter apps to discover network connectivity and configure themselves accordingly.
   internet_connection_checker: ^1.0.0+1
+  # A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.
+  equatable: ^2.0.5
+  # This plugin allows Flutter apps to discover network connectivity and configure themselves accordingly.
+  connectivity_plus: ^3.0.3
 
 dev_dependencies:
   flutter_test:
