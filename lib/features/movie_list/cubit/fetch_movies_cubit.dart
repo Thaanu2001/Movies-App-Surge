@@ -8,22 +8,22 @@ part 'fetch_movies_state.dart';
 
 class FetchMoviesCubit extends Cubit<FetchMoviesState> {
   final MoviesRepository _moviesRepository;
-  int currentPage = 0;
+  int currentPage = 1;
 
   FetchMoviesCubit({required MoviesRepository moviesRepository})
       : _moviesRepository = moviesRepository,
         super(FetchMoviesInitial());
 
   void reloadDeals() {
-    currentPage = 0;
+    currentPage = 1;
     if (!isClosed) {
       // ignore: prefer_const_literals_to_create_immutables
       emit(FetchMoviesLoaded([]));
     }
-    loadFetchMovies();
+    fetchMovies();
   }
 
-  void loadFetchMovies() {
+  void fetchMovies() {
     if ((state is FetchMoviesLoaded)
         ? !(state as FetchMoviesLoaded).isLastFetch
         : true) {
@@ -38,7 +38,7 @@ class FetchMoviesCubit extends Cubit<FetchMoviesState> {
 
       if (!isClosed) {
         emit(
-          FetchMoviesLoading(oldFetchMovies, isFirstFetch: currentPage == 0),
+          FetchMoviesLoading(oldFetchMovies, isFirstFetch: currentPage == 1),
         );
       }
 
