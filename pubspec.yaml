@@ -18,6 +18,10 @@ dependencies:
   dartz: ^0.10.1
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  # Widgets that make it easy to integrate blocs and cubits into Flutter. Built to work with package:bloc
+  flutter_bloc: ^8.1.2 
+  # A dart package that helps implement the BLoC pattern.
+  bloc: ^8.1.1
 
 dev_dependencies:
   flutter_test:
