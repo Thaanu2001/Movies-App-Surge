@@ -49,7 +49,7 @@ class FetchMoviesCubit extends Cubit<FetchMoviesState> {
           (l) {
             if (!isClosed) {
               emit(
-                FetchMoviesLoaded(movies, isLastFetch: true, errorMessage: l),
+                FetchMoviesLoaded(movies, isLastFetch: false, errorMessage: l),
               );
             }
           },

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -59,80 +60,94 @@ class _MovieListViewState extends State<MovieListView>
   Widget _loadingIndicator() {
     return Container(
       width: MediaQuery.of(context).size.width,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(5),
+      alignment: Alignment.topCenter,
+      padding: EdgeInsets.only(
+        top: 5,
+        bottom: MediaQuery.of(context).padding.bottom,
+      ),
       child: const CupertinoActivityIndicator(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SmartRefresher(
-      enablePullDown: true,
-      controller: _refreshController,
-      onRefresh: _refreshData,
-      scrollController: _scrollController,
-      header: CustomHeader(
-        refreshStyle: RefreshStyle.Behind,
-        onOffsetChange: (offset) {
-          if (_refreshController.headerMode!.value !=
-              RefreshStatus.refreshing) {
-            _scaleController.value = offset / 80.0;
+    return BlocListener<FetchMoviesCubit, FetchMoviesState>(
+      listener: (context, state) {
+        if (state is FetchMoviesLoaded) {
+          if (state.errorMessage != null) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.errorMessage ?? 'Movie fetching failure'),
+            ));
           }
-        },
-        height: 20,
-        builder: (c, m) {
-          return Container(
-            padding: const EdgeInsets.only(top: 15),
-            child: FadeTransition(
-              opacity: _scaleController,
-              child: ScaleTransition(
-                scale: _scaleController,
-                child: const CupertinoActivityIndicator(),
-              ),
-            ),
-          );
-        },
-      ),
-      child: BlocBuilder<FetchMoviesCubit, FetchMoviesState>(
-        builder: (context, state) {
-          if (state is FetchMoviesLoading && state.isFirstFetch) {
+        }
+      },
+      child: SmartRefresher(
+        enablePullDown: true,
+        controller: _refreshController,
+        onRefresh: _refreshData,
+        scrollController: _scrollController,
+        header: CustomHeader(
+          refreshStyle: RefreshStyle.Behind,
+          onOffsetChange: (offset) {
+            if (_refreshController.headerMode!.value !=
+                RefreshStatus.refreshing) {
+              _scaleController.value = offset / 80.0;
+            }
+          },
+          height: 20,
+          builder: (c, m) {
             return Container(
-              width: MediaQuery.of(context).size.width,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(5),
-              child: const CupertinoActivityIndicator(),
+              padding: const EdgeInsets.only(top: 15),
+              child: FadeTransition(
+                opacity: _scaleController,
+                child: ScaleTransition(
+                  scale: _scaleController,
+                  child: const CupertinoActivityIndicator(),
+                ),
+              ),
             );
-          }
+          },
+        ),
+        child: BlocBuilder<FetchMoviesCubit, FetchMoviesState>(
+          builder: (context, state) {
+            if (state is FetchMoviesLoading && state.isFirstFetch) {
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                alignment: Alignment.topCenter,
+                padding: const EdgeInsets.all(5),
+                child: const CupertinoActivityIndicator(),
+              );
+            }
 
-          List<Movie> movies = [];
-          bool isLastFetch = false;
+            List<Movie> movies = [];
+            bool isLastFetch = false;
 
-          if (state is FetchMoviesLoading) {
-            movies = state.oldFetchedMovies;
-          } else if (state is FetchMoviesLoaded) {
-            movies = state.movies;
-            isLastFetch = state.isLastFetch;
-          }
+            if (state is FetchMoviesLoading) {
+              movies = state.oldFetchedMovies;
+            } else if (state is FetchMoviesLoaded) {
+              movies = state.movies;
+              isLastFetch = state.isLastFetch;
+            }
 
-          return ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            padding: const EdgeInsets.only(bottom: 10),
-            itemBuilder: (context, index) {
-              if (index < movies.length) {
-                return MovieCard(
-                  movie: movies[index],
-                  rank: index + 1,
-                );
-              } else if (isLastFetch) {
-                return const Text('end');
-              }
-              return _loadingIndicator();
-            },
-            itemCount: movies.length + 1,
-          );
-        },
+            return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              padding: const EdgeInsets.only(bottom: 10),
+              itemBuilder: (context, index) {
+                if (index < movies.length) {
+                  return MovieCard(
+                    movie: movies[index],
+                    rank: index + 1,
+                  );
+                } else if (isLastFetch) {
+                  return const Text('end');
+                }
+                return _loadingIndicator();
+              },
+              itemCount: movies.length + 1,
+            );
+          },
+        ),
       ),
     );
   }
