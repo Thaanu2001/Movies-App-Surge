@@ -32,6 +32,12 @@ dependencies:
   equatable: ^2.0.5
   # This plugin allows Flutter apps to discover network connectivity and configure themselves accordingly.
   connectivity_plus: ^3.0.3
+  # A powerful HTTP client for Dart/Flutter, which supports global configuration, interceptors, FormData, request cancellation, file uploading/downloading, timeout, and custom adapters etc.
+  dio: ^5.1.1
+  # Wraps platform-specific persistent storage for simple data
+  shared_preferences: ^2.1.0
+  # A flutter library to show images from the internet and keep them in the cache directory.
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
