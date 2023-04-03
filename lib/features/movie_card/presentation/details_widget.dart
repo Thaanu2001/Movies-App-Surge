@@ -12,24 +12,25 @@ class DetailsWidget extends StatelessWidget {
     return Row(
       children: [
         Flexible(
-          child: Text(
-            movie.releaseDate,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: AppConstants.lightGreyColor,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              movie.releaseDate,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: AppConstants.lightGreyColor,
+              ),
             ),
           ),
         ),
         const SizedBox(width: 4),
-        Flexible(
-          child: Text(
-            '(${movie.language})',
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: AppConstants.lightGreyColor,
-            ),
+        Text(
+          '(${movie.language})',
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: AppConstants.lightGreyColor,
           ),
         ),
         Container(

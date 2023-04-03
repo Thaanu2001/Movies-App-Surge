@@ -16,8 +16,8 @@ class ImageWidget extends StatelessWidget {
       child: (imageUrl != null)
           ? CachedNetworkImage(
               imageUrl: ApiConstants.imagePath + imageUrl!,
-              height: 180,
-              width: 120,
+              height: 200,
+              width: 130,
               fit: BoxFit.cover,
               placeholder: (context, url) => const CupertinoActivityIndicator(),
               errorWidget: (context, url, error) => const Icon(Icons.error),

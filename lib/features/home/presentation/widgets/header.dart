@@ -4,22 +4,12 @@ import '../../../../core/constants/app_constants.dart';
 
 PreferredSizeWidget customAppBar() {
   return AppBar(
-    title: RichText(
-      text: const TextSpan(
-        text: 'Top Rated',
-        children: [
-          TextSpan(
-            text: ' Movies',
-            style: TextStyle(
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-        ],
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: AppConstants.blackColor,
-        ),
+    title: const Text(
+      'TOP RATED MOVIES',
+      style: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: AppConstants.blackColor,
       ),
     ),
     backgroundColor: AppConstants.whiteColor,

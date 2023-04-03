@@ -11,7 +11,7 @@ class TitleWidget extends StatelessWidget {
     return Text(
       title,
       style: const TextStyle(
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: FontWeight.w500,
         color: AppConstants.lightGreyColor,
       ),

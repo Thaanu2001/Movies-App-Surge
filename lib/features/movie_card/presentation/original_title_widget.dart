@@ -13,7 +13,7 @@ class OriginalTitleWidget extends StatelessWidget {
     return Text(
       '#$rank $originalTitle',
       style: const TextStyle(
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: FontWeight.w600,
         color: AppConstants.darkGreyColor,
       ),
