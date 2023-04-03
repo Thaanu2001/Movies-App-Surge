@@ -6,16 +6,21 @@ import '../../cubit/network_connection_cubit.dart';
 import '../widgets/header.dart';
 import '../widgets/no_connectivity_popup.dart';
 
+// ignore: must_be_immutable
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
+  bool isConnectivityPopupOpen = false;
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<NetworkConnectionCubit, NetworkConnectionState>(
       listener: (context, state) {
-        if (state.status == ConnectivityStatus.notConnected) {
-          noConnectivityPopup(context);
+        if (state.status == ConnectivityStatus.notConnected &&
+            !isConnectivityPopupOpen) {
+          isConnectivityPopupOpen = true;
           context.read<NetworkConnectionCubit>().resetConnectionStatus();
+          noConnectivityPopup(context)
+              .then((value) => isConnectivityPopupOpen = false);
         }
       },
       child: Scaffold(
