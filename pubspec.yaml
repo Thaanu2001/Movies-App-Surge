@@ -53,6 +53,8 @@ dev_dependencies:
   json_serializable: ^6.6.1
   # A build system for Dart code generation and modular compilation.
   build_runner: ^2.3.3
+  # A Dart package that makes testing blocs and cubits easy. Built to work with bloc and mocktail.
+  bloc_test: ^9.1.1]
 
 flutter:
   uses-material-design: true
