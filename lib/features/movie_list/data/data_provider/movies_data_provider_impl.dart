@@ -56,7 +56,6 @@ class MoviesDataProviderImpl extends MoviesDataProvider {
     } on MoviesFailure catch (e) {
       throw MoviesFailure(e.message);
     } catch (e) {
-      print(e);
       throw const MoviesFailure();
     }
   }

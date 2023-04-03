@@ -145,7 +145,10 @@ class _MovieListViewState extends State<MovieListView>
                     rank: index + 1,
                   );
                 } else if (isLastFetch) {
-                  return const Text('end');
+                  return const Align(
+                    alignment: Alignment.topCenter,
+                    child: Text('No movies found.'),
+                  );
                 }
                 return _loadingIndicator();
               },
