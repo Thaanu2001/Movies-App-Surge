@@ -1,10 +1,7 @@
 part of 'fetch_movies_cubit.dart';
 
 @immutable
-abstract class FetchMoviesState extends Equatable {
-  @override
-  List<Object> get props => [];
-}
+abstract class FetchMoviesState {}
 
 class FetchMoviesInitial extends FetchMoviesState {}
 
