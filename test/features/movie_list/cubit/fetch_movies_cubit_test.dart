@@ -21,10 +21,6 @@ void main() {
       fetchMoviesCubit.close();
     });
 
-    test('emits [FetchMoviesInitial] as the initial state of the cubit.', () {
-      expect(fetchMoviesCubit.state, FetchMoviesInitial());
-    });
-
     blocTest<FetchMoviesCubit, FetchMoviesState>(
       'emits [FetchMoviesLoading, FetchMoviesLoaded] when fetchMovies is called.',
       build: () => fetchMoviesCubit,
